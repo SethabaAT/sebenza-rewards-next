@@ -21,22 +21,22 @@ const tileImages = [
 ];
 
 const coverImages = [
-  { b_src: "/img/cover-1.png" },
-  { b_src: "/img/cover-2.png" },
-  { b_src: "/img/cover-3.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-11.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
-  { b_src: "/img/cover-4.png" },
+  { b_src: "/img/covers/cover-1.png" },
+  { b_src: "/img/covers/cover-2.png" },
+  { b_src: "/img/covers/cover-3.png" },
+  { b_src: "/img/covers/cover-4.png" },
+  { b_src: "/img/covers/cover-5.png" },
+  { b_src: "/img/covers/cover-6.png" },
+  { b_src: "/img/covers/cover-7.png" },
+  { b_src: "/img/covers/cover-8.png" },
+  { b_src: "/img/covers/cover-9.png" },
+  { b_src: "/img/covers/cover-10.png" },
+  { b_src: "/img/covers/cover-11.png" },
+  { b_src: "/img/covers/cover-12.png" },
+  { b_src: "/img/covers/cover-13.png" },
+  { b_src: "/img/covers/cover-14.png" },
+  { b_src: "/img/covers/cover-15.png" },
+  { b_src: "/img/covers/cover-16.png" },
 ];
 
 export default function Home() {
@@ -89,11 +89,11 @@ export default function Home() {
 
   return (
     <div className={`${styles.homeContainer} color-yellow`}>
-      <h1 className="text-5xl font-semibold m-6">
+      <h1 className="text-4xl font-semibold m-4 max-[360px]:text-3xl">
         Welcome to Sebenza&nbsp;Rewards
       </h1>
 
-      <p className="my-4 text-lg">
+      <p className="my-4 text-lg max-[360px]:text-base max-[360px]:my-2">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
         debitis at dicta necessitatibus+
       </p>
