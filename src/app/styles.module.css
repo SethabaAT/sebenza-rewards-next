@@ -30,6 +30,7 @@
     /* Set your border color */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     width: 20%;
+    transition-delay: 0.2s;
 }
 
 .back {
@@ -37,10 +38,10 @@
     transition-delay: 0.2s;
 }
 
+
+
 .flipped .front {
     transform: rotateY(0deg);
-    transition-delay: 0.2s;
-
     width: 20%;
 }
 
@@ -48,4 +49,10 @@
     width: 20%;
     transform: rotateY(90deg);
     transition-delay: 0s;
+}
+
+.blurBack {
+    filter: blur(2px) brightness(4%);
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
 }

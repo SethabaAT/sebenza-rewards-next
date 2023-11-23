@@ -82,7 +82,13 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (choice && choice2 && choice3) {
+    // If we allow the user to redeem 3 times
+
+    // if (choice && choice2 && choice3) {
+    //   setDisabled(true);
+    // }
+
+    if (choice) {
       setDisabled(true);
     }
   }, [choice, choice2, choice3]);
@@ -110,7 +116,7 @@ export default function Home() {
         ))}
       </div>
 
-      <p className="mt-2 text-sm font-semibold">Turns left: {turns}</p>
+      {/* <p className="mt-2 text-sm font-semibold">Turns left: {turns}</p> */}
     </div>
   );
 }
