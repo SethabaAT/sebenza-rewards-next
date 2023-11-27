@@ -3,8 +3,8 @@ import styles from "../styles.module.css";
 
 interface SingleCardProps {
   card: {
-    f_src: string;
-    b_src: string;
+    front_img_src: string;
+    back_img_src: string;
   };
   handleChoice(card: any): any;
   flipped: boolean;
@@ -27,13 +27,13 @@ function SingleCard({
     <div className="card flex justify-center">
       <div className={flipped ? `${styles.flipped}` : ""}>
         <img
-          src={card.f_src}
+          src={card.front_img_src}
           className={`${styles.front} rounded-xl shadow-lg`}
           alt="card front"
         />
 
         <img
-          src={card.b_src}
+          src={card.back_img_src}
           className={
             flipped
               ? `${styles.back} rounded-xl shadow-xl`
@@ -48,13 +48,13 @@ function SingleCard({
     <div className="card flex justify-center">
       <div className={flipped ? `${styles.flipped}` : ""}>
         <img
-          src={card.f_src}
+          src={card.front_img_src}
           className={`${styles.front} rounded-xl shadow-lg`}
           alt="card front"
         />
 
         <img
-          src={card.b_src}
+          src={card.back_img_src}
           className={`${styles.back} rounded-xl shadow-lg`}
           alt="card back"
           onClick={handleClick}

@@ -3,43 +3,60 @@ import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import SingleCard from "./components/SingleCard";
 
+// Define the Card type
 interface Card {
   id: number;
-  f_src: string;
-  b_src: string;
+  front_img_src: string;
+  back_img_src: string;
+  reward: string;
 }
 
+// Reward pics and messages
 const tileImages = [
-  { f_src: "/img/trolley.png" },
-  { f_src: "/img/try-again.jpg" },
-  { f_src: "/img/trolley.png" },
-  { f_src: "/img/sbicon.png" },
-  { f_src: "/img/try-again.jpg" },
-  { f_src: "/img/trolley.png" },
-  { f_src: "/img/sbicon.png" },
-  { f_src: "/img/try-again.jpg" },
+  {
+    front_img_src: "/img/trolley.png",
+    reward: "Congratulations You have won Grocery Voucher",
+  },
+  {
+    front_img_src: "/img/try-again.jpg",
+    reward: "Try Again Tomorrow",
+  },
+  {
+    front_img_src: "/img/trolley.png",
+    reward: "Congratulations You have won Grocery Voucher",
+  },
+  {
+    front_img_src: "/img/sbicon.png",
+    reward: "Congratulations you got 15 SB",
+  },
+  { front_img_src: "/img/try-again.jpg", reward: "Try Again Tomorrow" },
+  {
+    front_img_src: "/img/trolley.png",
+    reward: "Congratulations You have won Grocery Voucher",
+  },
+  {
+    front_img_src: "/img/sbicon.png",
+    reward: "Congratulations you got 15 SB",
+  },
+  { front_img_src: "/img/try-again.jpg", reward: "Try Again Tomorrow" },
+  { front_img_src: "/img/try-again.jpg", reward: "Try Again Tomorrow" },
 ];
 
+// Cover pages
 const coverImages = [
-  { b_src: "/img/covers/cover-1.png" },
-  { b_src: "/img/covers/cover-2.png" },
-  { b_src: "/img/covers/cover-3.png" },
-  { b_src: "/img/covers/cover-4.png" },
-  { b_src: "/img/covers/cover-5.png" },
-  { b_src: "/img/covers/cover-6.png" },
-  { b_src: "/img/covers/cover-7.png" },
-  { b_src: "/img/covers/cover-8.png" },
-  { b_src: "/img/covers/cover-9.png" },
-  { b_src: "/img/covers/cover-10.png" },
-  { b_src: "/img/covers/cover-11.png" },
-  { b_src: "/img/covers/cover-12.png" },
-  { b_src: "/img/covers/cover-13.png" },
-  { b_src: "/img/covers/cover-14.png" },
-  { b_src: "/img/covers/cover-15.png" },
-  { b_src: "/img/covers/cover-16.png" },
+  { back_img_src: "/img/covers/Tile 1.png" },
+  { back_img_src: "/img/covers/Tile 2.png" },
+  { back_img_src: "/img/covers/Tile 3.png" },
+  { back_img_src: "/img/covers/Tile 4.png" },
+  { back_img_src: "/img/covers/Tile 5.png" },
+  { back_img_src: "/img/covers/Tile 6.png" },
+  { back_img_src: "/img/covers/Tile 7.png" },
+  { back_img_src: "/img/covers/Tile 8.png" },
+  { back_img_src: "/img/covers/Tile 9.png" },
 ];
 
 export default function Home() {
+  // States for the page
   const [cards, setCards] = useState<Card[]>([]);
   const [turns, setTurns] = useState(3);
   const [choice, setChoice] = useState<Card>();
@@ -47,26 +64,35 @@ export default function Home() {
   const [choice3, setChoice3] = useState<Card>();
   const [disabled, setDisabled] = useState(false);
 
-  useEffect(() => {
-    // shuffle cards
-    const shuffleCards = () => {
+  // A function the front cards and then set disabled to false
+  const shuffleCards = () => {
+    // If the the third choice has not been made yet then the cards can be shuffled
+    if (!choice3) {
       const shuffledCards = tileImages
-        .concat(tileImages) // Duplicate front images for pairs
-        .sort(() => Math.random() - 0.5)
+
+        .sort(() => Math.random() - 0.5) // Radomize them
         .map((card, index) => ({
           id: Math.random(),
-          f_src: card.f_src,
-          b_src: coverImages[index % coverImages.length].b_src, // Use modulo to cycle through cover images
+          front_img_src: card.front_img_src,
+          back_img_src: coverImages[index % coverImages.length].back_img_src, // Use modulo to cycle through cover images
+          reward: card.reward,
         }));
 
+      // Cards becomes an array of objects of type Card
       setCards(shuffledCards);
-    };
+      setDisabled(false);
+    }
+  };
 
+  // When the app loads the rewards get shuffled
+  useEffect(() => {
+    // Call the function
     shuffleCards();
   }, []);
 
-  // Hanlde choice function
+  // Hanlde choice function - Set the choice from null
   const handleChoice = (card: any) => {
+    // If the first card is turned set the second and if the second the set the third one else set firt choice
     if (choice) {
       if (choice2) {
         setChoice3(card);
@@ -78,9 +104,10 @@ export default function Home() {
     }
 
     setTurns(turns - 1);
-    console.log("Wow you won", card.f_src);
+    console.log(card.reward);
   };
 
+  // This function runs everytime a new choice is clicked
   useEffect(() => {
     // If we allow the user to redeem 3 times
 
@@ -104,7 +131,7 @@ export default function Home() {
         debitis at dicta necessitatibus+
       </p>
 
-      <div className={`grid grid-cols-4 gap-2`}>
+      <div className={`grid grid-cols-3 gap-3`}>
         {cards.map((card) => (
           <SingleCard
             key={card.id}
@@ -115,6 +142,10 @@ export default function Home() {
           />
         ))}
       </div>
+
+      {/* <button className={styles.btnNewGame} onClick={shuffleCards}>
+        Try Again
+      </button> */}
 
       {/* <p className="mt-2 text-sm font-semibold">Turns left: {turns}</p> */}
     </div>
